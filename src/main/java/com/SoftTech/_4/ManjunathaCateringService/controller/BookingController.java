@@ -44,6 +44,7 @@ public class BookingController {
 //    public List<BookingSlot> getPendingBookings() {
 //        return bookingService.findAllBookingList();
 //    }
+
 // using pagination
     @GetMapping("/allBookingList")
     public APIResponse<List<BookingSlot>> getPendingBookings() {
@@ -56,13 +57,13 @@ public class BookingController {
         List<BookingSlot> allBookingList = bookingService.findBookingsWithSorting(field);
         return new APIResponse<>(allBookingList.size(),allBookingList);
     }
-
+//using pagination
     @GetMapping("/pagination/{offset}/{pageSize}")
     public APIResponse<Page<BookingSlot>> getAllBookingWithPagination(@PathVariable int offset, @PathVariable int pageSize) {
         Page<BookingSlot> allBookingList = bookingService.findBookingWithPagination(offset, pageSize);
         return new APIResponse<>(allBookingList.getSize(), allBookingList);
     }
-
+//pagination and sorting
     @GetMapping("/paginationAndSort/{offset}/{pageSize}/{field}")
     public APIResponse<Page<BookingSlot>> getAllBookingWithPaginationAndSort(@PathVariable int offset, @PathVariable int pageSize, @PathVariable String field) {
         Page<BookingSlot> allBookingList = bookingService.findBookingWithPaginationAndSorting(offset, pageSize, field);
